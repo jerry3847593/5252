@@ -1,0 +1,11 @@
+<head>
+    <title>EDIT</title>
+</head>
+<body>
+    <h1>안녕 나는 글 수정 페이지이야!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "submit">수정한다</button>
+    </form>
+</body>

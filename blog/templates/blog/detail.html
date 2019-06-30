@@ -1,0 +1,42 @@
+<head>
+    <title>DETAIL</title>
+</head>
+<body>
+    <div>
+        <h2>{{post.title}}</h2>
+        
+        <button type="submit"><a href= "{% url 'edit' post.id %}">수정</a></button>
+
+        <button type="submit"><a href='{% url "delete" post.id %}'>삭제</a></button>
+
+        <button type="submit"><a href="{% url 'home' %}">홈으로</a></button>
+        
+        <p>{{post.text}}</p>
+       
+    </div>
+
+    <br>
+
+    {% for comment in post.comments.all %}
+    <div>
+        {{comment.text|linebreaks}}
+        <strong>{{comment.nickname}}</strong>
+    </div>
+    
+    <div>
+    <button type="submit"><a href="{% url 'comment_delete' comment_id=comment.id %}" >댓글 삭제</a></button>
+    </div>
+    {% empty %}
+    <p>아무 댓글이 없어요</p>
+    {% endfor  %}
+
+    <div class="form-group">
+        <h4>댓글 작성</h4>
+        <form method="POST" action="{% url 'add_comment' post.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="save btn btn-default">작성</button>
+        </form>
+    </div>
+
+</body>

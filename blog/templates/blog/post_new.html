@@ -1,0 +1,11 @@
+<head>
+    <title>NEW</title>
+</head>
+<body>
+    <h1>안녕 나는 글 쓰기 페이지이야!</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type = "submit">저장한다</button>
+    </form>
+</body>

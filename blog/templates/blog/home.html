@@ -1,0 +1,36 @@
+<head>
+    <title>HOME</title>
+    <style>
+        h2{text-overflow:ellipsis;
+        white-space:nowrap;
+        word-wrap:normal;
+        width:100px;
+        overflow:hidden;
+        }
+    </style>
+</head>
+ 
+<body>
+    {% if user.is_active %}
+    김예훈
+    <button type="submit"><a href="{% url 'logout' %}">log out</a></button>
+        {% for post in posts.all %}
+            <div>
+                <h2><a href="{% url 'detail' post.id %}">{{post.title}}</a></h2>
+            </div>
+        {% endfor %}
+    <br>    
+    <button type="submit"><a href="{% url 'new' %}">글쓰기</a></button>}           
+    {% else %}
+    김예훈
+    <button type="submit"><a href="{% url 'login' %}">log in</a></button>
+    <button type="submit"><a href="{% url 'accounts:signup' %}">sign up</a></button>
+        {% for post in posts.all %}
+            <div>
+                <h2><a href="{% url 'login' %}">{{post.title}}</a></h2>
+            </div>
+        {% endfor %}
+    {% endif %}     
+   
+
+</body>
